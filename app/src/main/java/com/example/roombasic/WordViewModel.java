@@ -14,7 +14,7 @@ public class WordViewModel extends AndroidViewModel {
     private WordRepository wordRepository;
     public WordViewModel(@NonNull Application application) {
         super(application);
-        wordRepository = new WordRepository(application);
+        wordRepository = new WordRepository(application); // 实例化
     }
 
     LiveData<List<Word>> getAllWordsLive() {

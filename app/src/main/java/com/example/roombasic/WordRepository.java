@@ -11,9 +11,13 @@ class WordRepository {
     private LiveData<List<Word>> allWordsLive;
     private WordDao wordDao;
 
+    /**
+     * 构造函数
+     */
     WordRepository(Context context) {
-        WordDatabase wordDatabase = WordDatabase.getDatabase(context.getApplicationContext());
-        wordDao = wordDatabase.getWordDao();
+        /** 抽象类方法的实现是在对应的子类中，抽象类（父类）对象指向子类即可调用，即new 子类而不是本身，这是多态的体现：父类只有函数头声明，而子类通过重写（“覆盖”）完成具体的实现。*/
+        WordDatabase wordDatabase = WordDatabase.getDatabase(context.getApplicationContext()); // 数据库实例化的单例
+        wordDao = wordDatabase.getWordDao(); // 抽象方法
         allWordsLive = wordDao.getAllWordsLive();
     }
 

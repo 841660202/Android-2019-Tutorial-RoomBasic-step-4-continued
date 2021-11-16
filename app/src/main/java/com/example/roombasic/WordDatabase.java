@@ -12,16 +12,18 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 //singleton
 @Database(entities = {Word.class},version = 5,exportSchema = false)
 public abstract class WordDatabase extends RoomDatabase {
+//    获取数据库
     private static WordDatabase INSTANCE;
     static synchronized WordDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),WordDatabase.class,"word_database")
                     //.fallbackToDestructiveMigration()
-                    .addMigrations(MIGRATION_4_5)
+//                    .addMigrations(MIGRATION_4_5)
                     .build();
         }
         return INSTANCE;
     }
+    // 定义数据库组成部分[这个方法会被room进行实例化，直接返回可用的实例]
     public abstract WordDao getWordDao();
 
     static final Migration MIGRATION_2_3 = new Migration(2,3) {

@@ -18,26 +18,31 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Button buttonInsert,buttonClear;
+    // 声明变量
+    Button buttonInsert, buttonClear;
     WordViewModel wordViewModel;
     RecyclerView recyclerView;
     Switch aSwitch;
-    MyAdapter myAdapter1,myAdapter2;
+    MyAdapter myAdapter1, myAdapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 获取视图元素
         recyclerView = findViewById(R.id.recyclerView);
+        aSwitch = findViewById(R.id.switch1);
+        buttonInsert = findViewById(R.id.buttonInsert);
+        buttonClear = findViewById(R.id.buttonClear);
 
         //wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         wordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
 
-        myAdapter1 = new MyAdapter(false,wordViewModel);
-        myAdapter2 = new MyAdapter(true,wordViewModel);
+        myAdapter1 = new MyAdapter(false, wordViewModel);
+        myAdapter2 = new MyAdapter(true, wordViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter1);
-        aSwitch = findViewById(R.id.switch1);
+
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -50,14 +55,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         wordViewModel.getAllWordsLive().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(List<Word> words) {
                 int temp = myAdapter1.getItemCount();
                 myAdapter1.setAllWords(words);
                 myAdapter2.setAllWords(words);
-                if (temp!=words.size()) {
+                if (temp != words.size()) {
                     myAdapter1.notifyDataSetChanged();
                     myAdapter2.notifyDataSetChanged();
                 }
@@ -65,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonInsert = findViewById(R.id.buttonInsert);
-        buttonClear = findViewById(R.id.buttonClear);
 
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
                         "价值",
                         "整数类型"
                 };
-                for(int i = 0;i<english.length;i++) {
-                    wordViewModel.insertWords(new Word(english[i],chinese[i]));
+                for (int i = 0; i < english.length; i++) {
+                    // 遍历一个一个插入
+                    wordViewModel.insertWords(new Word(english[i], chinese[i]));
                 }
             }
         });
