@@ -9,7 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-
+// mvvm架构组成
 public class WordViewModel extends AndroidViewModel {
     private WordRepository wordRepository;
     public WordViewModel(@NonNull Application application) {

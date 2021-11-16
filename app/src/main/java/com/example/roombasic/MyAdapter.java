@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+    // 成员变量为
     private List<Word> allWords = new ArrayList<>();
     private boolean useCardView;
     private WordViewModel wordViewModel;
-
+    // 构造
     MyAdapter(boolean useCardView, WordViewModel wordViewModel) {
         this.useCardView = useCardView;
         this.wordViewModel = wordViewModel;
@@ -57,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.textViewChinese.setVisibility(View.VISIBLE);
             holder.aSwitchChineseInvisible.setChecked(false);
         }
+        // 启动浏览器
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

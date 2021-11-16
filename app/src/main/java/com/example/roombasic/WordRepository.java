@@ -7,6 +7,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+/**
+ * 只是为了容易使用，封装了 allWordsLive、wordDao、增、删、改、查
+ */
 class WordRepository {
     private LiveData<List<Word>> allWordsLive;
     private WordDao wordDao;
@@ -42,6 +45,12 @@ class WordRepository {
         return allWordsLive;
     }
 
+    /**
+     * 1、继承 AsyncTask abstract类
+     * 2、成员变量为 dao
+     * 3、构造函数
+     * 4、重写 doInBackground
+     */
     static class InsertAsyncTask extends AsyncTask<Word, Void, Void> {
         private WordDao wordDao;
 

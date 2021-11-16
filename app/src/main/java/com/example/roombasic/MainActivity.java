@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    // 声明变量
+    // 成员变量
     Button buttonInsert, buttonClear;
     WordViewModel wordViewModel;
     RecyclerView recyclerView;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         myAdapter2 = new MyAdapter(true, wordViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter1);
-
+        // 使用不同的适配器，展示不同的内容
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

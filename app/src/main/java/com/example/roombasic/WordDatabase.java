@@ -9,6 +9,9 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+/**
+ * Database单例、WordDao
+ */
 //singleton
 @Database(entities = {Word.class},version = 5,exportSchema = false)
 public abstract class WordDatabase extends RoomDatabase {
@@ -24,6 +27,7 @@ public abstract class WordDatabase extends RoomDatabase {
         return INSTANCE;
     }
     // 定义数据库组成部分[这个方法会被room进行实例化，直接返回可用的实例]
+    /** 帮着实现，就需要这么写 */
     public abstract WordDao getWordDao();
 
     static final Migration MIGRATION_2_3 = new Migration(2,3) {
